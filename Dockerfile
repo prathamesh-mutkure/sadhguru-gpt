@@ -11,7 +11,7 @@ COPY main.py .
 COPY .env .
 
 # Install the required dependencies
-RUN pip install google-generativeai python-dotenv
+RUN pip install google-generativeai python-dotenv Flask
 
 # Set the entry point for the container
 ENTRYPOINT ["python", "main.py"]

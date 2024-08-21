@@ -1,3 +1,4 @@
+from flask import Flask, request, jsonify
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -5,6 +6,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+app = Flask(__name__)
+
 
 # Create the model
 generation_config = {
@@ -21,9 +25,20 @@ model = genai.GenerativeModel(
 )
 
 chat_session = model.start_chat(
-    history=[
-    ]
+    history=[]
 )
+
+
+@app.route('/chat', methods=['POST'])
+def get_response():
+    user_input = request.json['input']
+
+    bot_response = chat_session.send_message(
+        f"Answer as sadhguru in short - {user_input}")
+
+    print(f"Bot: {bot_response}")
+
+    return jsonify({"response": bot_response})
 
 
 def main():
@@ -42,4 +57,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True, port=5000)
