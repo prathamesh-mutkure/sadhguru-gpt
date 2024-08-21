@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-genai.configure(api_key=os.getenv["GEMINI_API_KEY"])
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Create the model
 generation_config = {
@@ -24,10 +24,6 @@ chat_session = model.start_chat(
     history=[
     ]
 )
-
-response = chat_session.send_message("INSERT_INPUT_HERE")
-
-print(response.text)
 
 
 def main():
