@@ -1,0 +1,8 @@
+version: "1"
+services:
+  chatbot:
+    build: .
+    env_file:
+      - .env
+    environment:
+      - API_URL
