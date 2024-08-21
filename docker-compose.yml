@@ -1,6 +1,6 @@
 version: "1"
 services:
-  chatbot:
+  sadhguru-gpt:
     build: .
     env_file:
       - .env
