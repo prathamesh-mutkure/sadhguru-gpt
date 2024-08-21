@@ -1,5 +1,5 @@
 # Use the official Python image as the base image
-FROM python:3.9-slim
+FROM python:3.9
 
 # Set the working directory to /app
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY main.py .
 COPY .env .
 
 # Install the required dependencies
-RUN pip install --no-cache-dir -r requiremts.txt
+RUN pip install google-generativeai python-dotenv
 
 # Set the entry point for the container
 ENTRYPOINT ["python", "main.py"]
